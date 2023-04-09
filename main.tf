@@ -17,6 +17,7 @@ data "aws_availability_zones" "available" {
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
+  version = "4.0.0"
 
   name = "stw-vpc"
   cidr = "10.0.0.0/16"
@@ -28,7 +29,6 @@ module "vpc" {
   enable_nat_gateway = true
   single_nat_gateway = true
   enable_vpn_gateway = false
-
 
 }
 
@@ -78,7 +78,7 @@ module "eks" {
   }
 
   vpc_id                   = local.vpc_id
-  subnet_ids               = local.subnets_ids
+  subnet_ids               = local.private_subnets_ids
   control_plane_subnet_ids = local.private_subnets_ids
 
   # EKS Managed Node Group(s)
