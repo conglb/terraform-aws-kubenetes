@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-west-1"
+  region = "eu-west-3"
 }
 
 data "aws_availability_zones" "available" {
@@ -19,7 +19,7 @@ module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
   version = "4.0.0"
 
-  name = "stw-vpc"
+  name = "cong-vpc-kube"
   cidr = "10.0.0.0/16"
 
   azs             = data.aws_availability_zones.available.names
@@ -54,7 +54,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 19.0"
 
-  cluster_name    = "stw-cluster"
+  cluster_name    = "cong-cube"
   cluster_version = "1.24"
 
   cluster_endpoint_public_access = true
